@@ -52,7 +52,10 @@ class _SIFormState extends State<SIForm> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5.0))),
                 )),
-            Row(
+            Padding(
+                padding: EdgeInsets.only(
+                    top: _minimumPadding, bottom: _minimumPadding),
+                child: Row(
               children: <Widget>[
                 Expanded(
                     child: TextField(
@@ -63,6 +66,7 @@ class _SIFormState extends State<SIForm> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0))),
                     )),
+                Container (width: _minimumPadding * 5,),
                 Expanded(
                     child: DropdownButton<String>(
                       items: _currencies.map((String value) {
@@ -77,7 +81,29 @@ class _SIFormState extends State<SIForm> {
                       },
                     )),
               ],
-            ),
+            )),
+            Padding(
+                padding: EdgeInsets.only(
+                    top: _minimumPadding, bottom: _minimumPadding),
+                child: Row(children: <Widget>[
+              Expanded(
+                child: RaisedButton(
+                  child: Text('Calculate'),
+                  onPressed: (){
+
+                  },
+                ),
+              ),
+              Expanded(
+                child: RaisedButton(
+                  child: Text('Reset'),
+                  onPressed: (){
+
+                  },
+                ),
+              ),
+            ]
+            )),
           ],
         ),
       ),
