@@ -28,10 +28,16 @@ class _SIFormState extends State<SIForm>{
       body: Container(
         child: Column(
           children: <Widget>[
-
+            getImageAsset(),
           ],
         ),
       ),
     );
+  }
+  Widget getImageAsset()
+  {
+    AssetImage assetImage = AssetImage(images/money.jpg);
+    Image image = Image(image: assetImage,width: 125.0,height: 125.0,);
+    return Container(child: image,);
   }
 }
