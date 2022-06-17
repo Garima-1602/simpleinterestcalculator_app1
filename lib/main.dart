@@ -3,8 +3,19 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MaterialApp(
     title: 'Simple Interest Calculator App',
+
     debugShowCheckedModeBanner: false,
     home: SIForm(),
+    theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Colors.blue[800],
+
+        // Define the default font family.
+        fontFamily: 'Georgia',
+
+        //primaryColor: Colors.black,
+      //accentColor: Colors.accentblue
+    ),
   ));
 }
 
@@ -18,9 +29,12 @@ class SIForm extends StatefulWidget {
 //create state class
 class _SIFormState extends State<SIForm> {
   var _currencies = ['Rupees', 'Dollars', 'Pounds'];
-  final _minimumPadding = 5.0;
+  final double _minimumPadding = 5.0;
+  var _currentItemSelected ='Rupees';
   @override
   Widget build(BuildContext context) {
+
+    //TextStyle textStyle =Theme.of(context).textTheme.title;
     return Scaffold(
       //resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -36,9 +50,11 @@ class _SIFormState extends State<SIForm> {
                     top: _minimumPadding, bottom: _minimumPadding),
                 child: TextField(
                   keyboardType: TextInputType.number,
+                  //style: textStyle,
                   decoration: InputDecoration(
                       labelText: 'Principal',
                       hintText: 'Enter Principal e.g 12000',
+                      //labelStyle: textStyle,
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5.0))),
                 )),
@@ -47,9 +63,11 @@ class _SIFormState extends State<SIForm> {
                     top: _minimumPadding, bottom: _minimumPadding),
                 child: TextField(
                   keyboardType: TextInputType.number,
+                  //style: textStyle,
                   decoration: InputDecoration(
                       labelText: 'Rate Of Interest',
                       hintText: 'Enter in %',
+                     // labelStyle: textStyle,
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5.0))),
                 )),
@@ -61,9 +79,11 @@ class _SIFormState extends State<SIForm> {
                 Expanded(
                     child: TextField(
                       keyboardType: TextInputType.number,
+                      //style: textStyle,
                       decoration: InputDecoration(
                           labelText: 'Term',
                           hintText: 'Time in Years%',
+                          //labelStyle: textStyle,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0))),
                     )),
@@ -76,9 +96,10 @@ class _SIFormState extends State<SIForm> {
                           child: Text(value),
                         );
                       }).toList(),
-                      value: 'Rupees',
+                      value: _currentItemSelected,
                       onChanged: (String? newValueSelected) {
-                        // _ondropDownItemSelected(newValueSelected);
+                         _ondropDownItemSelected(newValueSelected);
+
                       },
                     )),
               ],
@@ -89,7 +110,7 @@ class _SIFormState extends State<SIForm> {
                 child: Row(children: <Widget>[
               Expanded(
                 child: RaisedButton(
-                  child: Text('Calculate'),
+                  child: Text('Calculate',),
                   onPressed: (){
 
                   },
@@ -97,7 +118,7 @@ class _SIFormState extends State<SIForm> {
               ),
               Expanded(
                 child: RaisedButton(
-                  child: Text('Reset'),
+                  child: Text('Reset',),
                   onPressed: (){
 
                   },
@@ -107,7 +128,7 @@ class _SIFormState extends State<SIForm> {
             )),
             Padding(
               padding: EdgeInsets.all(_minimumPadding *2),
-              child: Text('Todo Text'),
+              child: Text('Todo Text',),
             )
           ],
         ),
@@ -128,3 +149,10 @@ class _SIFormState extends State<SIForm> {
     );
   }
 }
+
+void _ondropDownItemSelected(String? newValueSelected) {
+  setState(() {
+    this._currentItemSelected = newValueSelected;
+  });
+}
+
